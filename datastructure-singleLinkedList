@@ -1,0 +1,57 @@
+//Adding node before head:
+
+const Node = require('./Node');
+
+class LinkedList {
+  constructor(){
+    this.head = null; 
+  }
+  addToHead(data){
+    const newHead = new Node(data);
+    const currentHead = this.head;
+    this.head = newHead;
+    if(currentHead){ //if linked list has a head, set the head to the next node
+      this.head.setNextNode(currentHead);
+    }
+  }
+}
+
+module.exports = LinkedList;
+
+//Adding node after Tail: these is not tail feature for node
+
+addToTail(data) {
+    let tail = this.head;
+    if (!tail) { //if head is empty, set new node as head
+      this.head = new Node(data);
+    } else { //if not empty, iterate the list till the tail. 
+      while (tail.getNextNode() !== null) {
+        tail = tail.getNextNode();
+      }
+      tail.setNextNode(new Node(data));
+    }
+  }
+
+//Remove head node:
+removeHead(){
+    const removedHead = this.head;
+    if(!removedHead){
+      return;
+    }else{
+      this.head = removedHead.getNextNode();
+      return removedHead.data;
+    }
+  }
+
+//print list:
+
+  printList(){
+    let currentNode = this.head;
+    let output = '<head> ';
+    while(currentNode){
+      output = output + currentNode.data + ' ';
+      currentNode = currentNode.getNextNode();
+    }
+    output += '<tail>'
+    console.log(output);
+  }
